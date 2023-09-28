@@ -54,11 +54,18 @@ LEFT JOIN general g ON e.case_id = g.case_id
 GROUP BY g.state
 ORDER BY Average_wage_per_state DESC
 
--- The highest wage for the above query is Maine with an average salary of 141627.73. Which company is applying for such a high salary petition? List the top 5 companies and the wages.
+---- The highest wage for the above query is Maine with an average salary of 141627.73. Which company is applying for such a high salary petition? List the top companies and the wages.
 
 SELECT
+	e.status,
+	e.soc_name,
+	e.job_title,
+	e.wage
 FROM	employ e
 LEFT JOIN general g ON e.case_id =g.case_id
+WHERE g.state LIKE 'Maine'
+
+ -- Outlier of job_title of "F" with wage 345000, which is 147046 above the second highest wage in the dataset.
 
 
 
